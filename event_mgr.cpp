@@ -63,8 +63,8 @@ void event_mgr::run()
 
 void event_mgr::add_sig_event(Event& e)
 {
-	event *sigobj=event_new(base,e.fd,EV_SIGNAL|EV_PERSIST,e.handler,e.arg);
-	event_set(sigobj,e.fd,EV_SIGNAL|EV_PERSIST,e.handler,e.arg);
+	event *sigobj=event_new(base,e.fd,e.type0,e.handler,e.arg);
+	event_set(sigobj,e.fd,e.type0,e.handler,e.arg);
 	event_add(sigobj,NULL);
 	ev_vec.push_back(e);
 }
