@@ -41,9 +41,9 @@ void event_mgr::del_event(Event e)
 	//event_active(&e,EV_READ|EV_PERSIST,1);
 	for(std::vector<Event>::iterator it=ev_vec.begin();it!=ev_vec.end();)
 	{
-		if(e.fd==it->fd&&e.type0==it->type0)
+		if(e.fd==it->fd&&(e.type0&it->type0))
 		{
-			event_del(e.ev);
+			event_del(it->ev);
 			ev_vec.erase(it);
 			//e.ev=NULL;
 		}
